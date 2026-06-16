@@ -47,7 +47,7 @@ for _et in load_extra_tokens():
     if _et not in _env_tokens: _env_tokens.append(_et)
 TOKENS = _env_tokens
 
-OWNER_IDS = [6982820486]
+OWNER_IDS = [7970097238]
 ADMINS_FILE = "admin_ids.json"
 GROUPS_FILE = "monitored_groups.json"
 SUDO_FILE = "sudo.json"
