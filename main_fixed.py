@@ -1075,13 +1075,14 @@ async def kengnc_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
             try:
                 e1, e2 = random.choice(EXONC_TEXTS), random.choice(NCEMO_EMOJIS)
                 await bot.set_chat_title(c, f"{b} {e1}{e2}")
-        except Exception:
-            pass
                 await asyncio.sleep(global_delay)
-            except asyncio.CancelledError: break
-            except: await asyncio.sleep(1)
+            except asyncio.CancelledError:
+                break
+            except Exception:
+                await asyncio.sleep(1)
     group_tasks[cid] = [asyncio.create_task(keng_loop(bot, cid, base)) for bot in bots]
     await update.message.reply_text("✨ 𝐁𝐋𝐀𝐂𝐊𝐍𝐂 𝐎𝐍!")
+
 
 # ─────────────────────────────────────────────────
 #  SPAM COMMANDS
