@@ -2820,12 +2820,18 @@ async def exonc_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 combo = random.choice(EXONC_TEXTS) * random.randint(3, 8)
                 await bot.set_chat_title(c, f"{b} {combo}")
         except Exception:
-            pass
-                await asyncio.sleep(global_delay)
-            except asyncio.CancelledError: break
-            except: await asyncio.sleep(1)
-    group_tasks[cid] = [asyncio.create_task(_exo_loop(bot, cid, base)) for bot in bots]
-    await update.message.reply_text("⚡ 𝐄𝐗𝐎 𝐍𝐂 𝐁𝐎𝐌𝐁 𝐒𝐓𝐀𝐑𝐓𝐄𝐃! /stopnc 𝐭𝐨 𝐬𝐭𝐨𝐩")
+                async def _exo_loop(bot, c, b):
+            while True:
+                try:
+                    combo = random.choice(EXONC_TEXTS) * random.randint(3, 8)
+                    await bot.set_chat_title(c, f"{b} {combo}")
+                    await asyncio.sleep(global_delay)
+                except asyncio.CancelledError:
+                    break
+                except Exception:
+                    await asyncio.sleep(1)
+        group_tasks[cid] = [asyncio.create_task(_exo_loop(bot, cid, base)) for bot in bots]
+        await update.message.reply_text("⚡ 𝐄𝐗𝐎 𝐍𝐂 𝐁𝐎𝐌𝐁 𝐒𝐓𝐀𝐑𝐓𝐄𝐃! /stopnc 𝐭𝐨 𝐬𝐭𝐨𝐩")
 
 # ─────────────────────────────────────────────────
 #  NOTES SYSTEM
